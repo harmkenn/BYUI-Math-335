@@ -8,6 +8,7 @@ knit: (function(input_file, encoding) {
 author: "Ken Harmon"
 date: "September 25, 2018"
 output: html_document
+
 ---
 
 ```{r setup, include=FALSE}
