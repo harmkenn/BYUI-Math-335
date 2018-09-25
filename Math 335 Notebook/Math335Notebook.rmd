@@ -1,0 +1,558 @@
+---
+title: "Table of Contents"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+
+---
+```{r, include=FALSE}
+library(tidyverse)
+```
+
+## Assignments {.tabset .tabset-fade}
+
+### Week 1{.tabset .tabset-fade}
+
+#### Rauser
+
+The rendered document is available on rpubs at [http://rpubs.com/jrauser/hhsd_notes](http://rpubs.com/jrauser/hhsd_notes).
+
+Cleveland's three visual operations of pattern perception
+
+1. Detection (geometric shape encodes data)
+    a. Larger the proportional difference is easier to detect
+    b. banking to 45
+
+2. Assembly
+    a. reification (parts of a whole)
+    b. emergence
+    c. Law of Closure
+    d. Law of Continuity
+    e. Law of Similarity
+
+3. Estimation
+    a. discrimination
+    b. ranking
+    c. ratio-ing
+    
+Ranking of Encoding
+
+1. position along a common scale
+2. position on identical but nonaligned scales
+3. length
+4. Slope
+5. Area
+6. Volume, Density, or Color Saturatiom
+7. Color Hue (categorical)
+
+#### Day 01
+
+[Good Data Scientist](https://towardsdatascience.com/what-makes-a-good-data-scientist-engineer-a8b4d7948a86)
+
+Alt +- 
+Alt shift k
+CTL Shift m
+CTRL ALT i
+
+#### Task 2
+
+[Google R Style Guide](https://google.github.io/styleguide/Rguide.xml)
+[335 Website](https://byuistats.github.io/M335/)
+[Stack Overflow](https://stackoverflow.com/) Login: harmonk Password:
+[Slack.com](https://byuidwv.slack.com)
+[Github](https://github.com/) Login: harmkenn (harmonke@byui.com) Pasword: 1qw32!QW#@
+[Linkedin](https://www.linkedin.com/) Login: harmkenn@gmail.com Password: 1qw32!QW#@
+
+### Week 2{.tabset .tabset-fade}
+
+#### Readings
+
+##### Being Readings
+
+o Effectively Communicating Numbers (pg 1-13)
+
+This process consists of the following six fundamental stages:
+
+  1. Determine your message and identify the data necessary to communicate it.
+  2. Determine if a table, graph, or combination of both is needed to communicate your message.
+  The remaining stages apply only if one or more graphs are required.
+  3. Determine the best means to encode the values.
+  4. Determine where to display each variable.
+  5. Determine the best design for the remaining objects.
+  6. Determine if particular data should be featured above the rest, and if so, how.
+
+Categorical: Nomial, Ordinal, Interval
+
+Graphs
+
+  1. Time Series
+  2. Ranking Relationships
+  3. Part to Whole
+  4. Deviation Relationships
+  5. Distribution relationships
+  6. Correlation
+  7. Nominal
+
+Avoid Area or Volume relationship: Linear is best
+
+o Hans Rosling: The best stats you’ve ever seen
+
+  1. Aggrigate vs deaggrigated data
+  2. Time and bubble trends
+  3. gapminder
+  4. Make data available
+  5. Log scales to make it look linear
+  
+o Questions and best data science
+
+  1. Ask questions that matter
+  2. Know when the question has been answered logically
+  3. Know when the question has been answered creativally
+      test your solution and try to make it fail
+
+##### Doing Readings
+
+o Chapter 3: R for Data Science - Data visualization
+
+###### 3.1 Introduction 
+
+###### 3.1.1 Prerequisites
+
+###### 3.2 First Steps
+
+###### 3.2.2 Creating  a ggplot
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy), color="blue")
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = hwy, y = cyl))
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = class, y = drv))
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color=class))
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color=displ))
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color=trans))
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = displ, color=trans))
+```
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = displ, color=displ<5))
+```
+
+###### 3.5 Facets
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)
+```
+
+###### 3.5.1 
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+
+###### 3.6 Geometric
+
+```{r}
+ggplot(data = mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv))
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth(data = filter(mpg, class == "subcompact"), se = FALSE)
+```
+
+###### 3.6.1 Geometric Exercises 
+
+########### 1
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_line() + geom_point()
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_boxplot()
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ)) + geom_histogram()
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_area()
+```
+
+########### 2
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+
+########### 6
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, class = drv), se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, class = drv), se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv), se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() 
+```
+
+###### 3.7 Statistical Transformation {.tabset .tabset-fade}
+
+###### 3.7 Lesson
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut))
+```
+
+```{r}
+demo <- tribble(
+  ~cut,         ~freq,
+  "Fair",       1610,
+  "Good",       4906,
+  "Very Good",  12082,
+  "Premium",    13791,
+  "Ideal",      21551
+)
+
+ggplot(data = demo) +
+  geom_bar(mapping = aes(x = cut, y = freq), stat = "identity")
+```
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1))
+```
+
+```{r}
+ggplot(data = diamonds) + 
+  stat_summary(
+    mapping = aes(x = cut, y = depth),
+    fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median
+  )
+```
+
+###### 3.7.1 Geometric Exercises 
+
+########### 1
+
+###### 3.8 Position Adjustment {.tabset .tabset-fade}
+
+###### 3.8 Lesson
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, colour = cut))
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = cut))
+```
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity))
+```
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(alpha = 1/5, mapping = aes(x = cut, fill = clarity), position = "fill")
+```
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), position = "jitter")
+```
+
+###### 3.9 Coordinate System {.tabset .tabset-fade}
+
+###### 3.9 Lesson
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot() +
+  coord_flip()
+```
+
+```{r}
+nz <- map_data("nz")
+ggplot(nz, aes(long, lat, group = group)) +
+  geom_polygon(fill = "white", colour = "black") +
+  coord_quickmap()
+```
+```{r}
+bar <- ggplot(data = diamonds) + 
+  geom_bar(
+    mapping = aes(x = cut, fill = cut), 
+    show.legend = FALSE,
+    width = 1
+  ) + 
+  theme(aspect.ratio = 1) +
+  labs(x = NULL, y = NULL)
+
+bar + coord_flip()
+bar + coord_polar()
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point() + 
+  geom_abline() +
+  coord_fixed()
+```
+
+###### 3.10 Graphics Grammar {.tabset .tabset-fade}
+
+###### 3.10 Lesson
+
+Seven Parameters of Graph
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>, 
+     position = <POSITION>
+  ) +
+  <COORDINATE_FUNCTION> +
+  <FACET_FUNCTION>
+
+
+o GitHub and Rstudio by Github (stop after the ‘Commit local changes with Git’)
+
+
+o GitHub for Data Scientists
+o Using the R-Studio GUI by R-Studio
+o Chapter 8: R for Data Science - Projects
+o MCS 335, Git, and Github use
+o R-Studio and the Git GUI
+o Creating Questions for your project
+o Chapter 5: R for Data Science - Data transformation
+o DataCamp: 1 Data Wrangling Chapter of Introduction to Tidyverse
+
+```{r}
+library(gapminder)
+library(dplyr)
+gapminder
+gapminder %>% filter(year == 1957)
+gapminder %>% filter(year == 2002, country =="China")
+# Sort in ascending order of lifeExp
+gapminder %>% arrange(lifeExp)
+# Sort in descending order of lifeExp
+gapminder %>% arrange(desc(lifeExp))
+# Filter for the year 1957, then arrange in descending order of population
+gapminder %>% filter(year == 1957) %>% arrange(desc(pop))
+# Use mutate to change lifeExp to be in months
+gapminder %>% mutate(lifeExp = 12*lifeExp)
+# Use mutate to create a new column called lifeExpMonths
+gapminder %>% mutate(lifeExpMonths = 12*lifeExp)
+# Filter, mutate, and arrange the gapminder dataset
+gapminder %>% filter(year==2007) %>% mutate(lifeExpMonths = 12*lifeExp) %>% arrange(desc(lifeExpMonths))
+```
+o DataCamp: 2 Data Visualization Chapter of Introduction to Tidyverse
+
+```{r}
+library(ggplot2)
+gapminder_1952 <- gapminder %>% filter(year == 1952)
+# Change to put pop on the x-axis and gdpPercap on the y-axis
+ggplot(gapminder_1952, aes(x = pop, y = gdpPercap)) +
+  geom_point()
+# Create a scatter plot with pop on the x-axis and lifeExp on the y-axis
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) + geom_point()
+# Change this plot to put the x-axis on a log scale
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) + geom_point() + scale_x_log10()
+# Scatter plot comparing pop and gdpPercap, with both axes on a log scale
+ggplot(gapminder_1952, aes(x = pop, y = gdpPercap)) + geom_point() + scale_x_log10() + scale_y_log10()
+# Scatter plot comparing pop and lifeExp, with color representing continent
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent)) + geom_point()+ scale_x_log10()
+# Add the size aesthetic to represent a country's gdpPercap
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent, size = gdpPercap)) + geom_point() + scale_x_log10()
+# Scatter plot comparing pop and lifeExp, faceted by continent
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) + geom_point() + scale_x_log10() + facet_wrap(~continent)
+# Scatter plot comparing gdpPercap and lifeExp, with color representing continent
+# and size representing population, faceted by year
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) + geom_point() + facet_wrap(~year)+ scale_x_log10()
+```
+
+
+o DataCamp: 3 Grouping and Summarizing Chapter of Introduction to Tidyverse
+
+```{r}
+gapminder %>% filter(year == 2007) %>% summarize(meanLifeExp = mean(lifeExp), totalPop = sum(pop))
+# Summarize to find the median life expectancy
+gapminder %>% summarize(medianLifeExp = median(lifeExp))
+# Filter for 1957 then summarize the median life expectancy
+gapminder %>% filter(year == 1957) %>% summarize(medianLifeExp = median(lifeExp))
+# Filter for 1957 then summarize the median life expectancy and the maximum GDP per capita
+gapminder %>% filter(year == 1957) %>% summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+gapminder %>% group_by(continent) %>% filter(year == 2007) %>% summarize(meanLifeExp = mean(lifeExp), totalPop = sum(pop))
+gapminder
+# Find median life expectancy and maximum GDP per capita in each year
+gapminder %>% group_by(year) %>% summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+# Find median life expectancy and maximum GDP per capita in each continent in 1957
+gapminder %>% filter(year==1957) %>% group_by(continent) %>%summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+# Find median life expectancy and maximum GDP per capita in each year/continent combination
+gapminder %>% group_by(continent,year) %>%summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+
+by_year <- gapminder %>% group_by(year) %>% summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+
+# Create a scatter plot showing the change in medianLifeExp over time
+ggplot(by_year, aes(x=year, y=medianLifeExp)) + geom_point() + expand_limits(y=0)
+
+# Summarize medianGdpPercap within each continent within each year: by_year_continent
+by_year_continent <- gapminder %>% group_by(continent,year) %>% summarize(medianGdpPercap = median(gdpPercap))
+
+# Plot the change in medianGdpPercap in each continent over time
+ggplot(by_year_continent, aes(x=year, y=medianGdpPercap, color=continent)) + geom_point() + expand_limits(y=0)
+
+# Summarize the median GDP and median life expectancy per continent in 2007
+by_continent_2007<-gapminder %>% filter(year == 2007) %>% group_by(continent) %>% summarize(medianLifeExp = median(lifeExp), medianGdpPercap=median(gdpPercap))
+
+# Use a scatter plot to compare the median GDP and median life expectancy
+ggplot(by_continent_2007, aes(x=medianGdpPercap, y=medianLifeExp, color=continent)) + geom_point() + expand_limits(y=0)
+```
+
+o DataCamp: 4 Line Plots Chapter of Introduction to Tidyverse
+
+```{r}
+# Summarize the median gdpPercap by year, then save it as by_year
+by_year <- gapminder %>% group_by(year) %>% summarize(medianGdpPercap = median(gdpPercap))
+
+# Create a line plot showing the change in medianGdpPercap over time
+ggplot(by_year, aes(x=year, y=medianGdpPercap)) + geom_line() + expand_limits(y=0)
+
+# Summarize the median gdpPercap by year & continent, save as by_year_continent
+by_year_continent <- gapminder %>% group_by(year,continent) %>% summarize(medianGdpPercap = median(gdpPercap))
+
+# Create a line plot showing the change in medianGdpPercap by continent over time
+ggplot(by_year_continent, aes(x=year, y=medianGdpPercap, color=continent)) + geom_line() + expand_limits(y=0)
+
+# Summarize the median gdpPercap by year and continent in 1952
+by_continent <- gapminder %>% group_by(continent) %>% filter(year == 1952) %>% summarize(medianGdpPercap = median(gdpPercap))
+
+# Create a bar plot showing medianGdp by continent
+ggplot(by_continent, aes(x=continent, y=medianGdpPercap)) + geom_col()
+
+# Filter for observations in the Oceania continent in 1952
+oceania_1952 <- gapminder %>% group_by(country) %>% filter(continent == "Oceania", year == 1952) 
+
+# Create a bar plot of gdpPercap by country
+ggplot(oceania_1952, aes(x=country, y=gdpPercap)) + geom_col()
+
+gapminder_1952 <- gapminder %>% filter(year == 1952)
+
+# Create a histogram of population (pop)
+ggplot(gapminder_1952, aes(x=pop)) + geom_histogram()
+
+# Create a histogram of population (pop), with x on a log scale
+ggplot(gapminder_1952, aes(x=pop)) + geom_histogram() + scale_x_log10()
+
+# Create a boxplot comparing gdpPercap among continents
+ggplot(gapminder_1952, aes(x=continent, y=gdpPercap)) + geom_boxplot() + scale_y_log10()
+
+# Add a title to this graph: "Comparing GDP per capita across continents"
+ggplot(gapminder_1952, aes(x = continent, y = gdpPercap)) + geom_boxplot() + scale_y_log10() + labs(title ="Comparing GDP per capita across continents")
+```
+
+
+#### Task 3
+
+```{r}
+
+```
+
+### Week 3{.tabset .tabset-fade}
+
+#### t-Test
+```{r}
+
+```
+
+
+#### Wilcoxon
+```{r}
+
+```
+
