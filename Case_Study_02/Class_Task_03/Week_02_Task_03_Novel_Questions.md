@@ -1,0 +1,56 @@
+# Week 2 Task 3 Questions
+Ken Harmon  
+`r format(Sys.time(), '%B %d, %Y')`  
+
+
+
+
+
+
+```r
+# Use this R-Chunk to import all your datasets!
+```
+
+## Background
+
+[ ] Take notes on your reading of the specified ‘R for Data Science’ chapter in the README.md or in a ‘.R’ script in the class task folder
+[ ] Develop a few novel questions that data can answer
+[ ] Get feedback from 5-10 people on their interest in your questions and summarize this feedback
+[ ] Find other examples of people addressing your question
+[ ] Present your question to a data scientist to get feedback on the quality of the question and if it can be addressed in 2-months.
+[ ] Create one .rmd file that has your report
+[ ] Have a section for each question
+[ ] Push your .Rmd, .md, and .html to your GitHub repo
+
+## Question one
+
+The world has different fertility (birth rates) per country. I assume that this can be attributed to many factors. THe United States is about as ethically diverse as any country in the world. 
+
+Is there a correlation of fertility rates between ethnicities within the United States and the countries where those enthnicities originate?
+
+https://www.unomaha.edu/college-of-public-affairs-and-community-service/center-for-public-affairs-research/news/fertility-rate-gap.php
+
+https://ifstudies.org/blog/baby-bust-fertility-is-declining-the-most-among-minority-women
+
+## Question two
+
+If there is a difference between ethnicities' fertility rates within the United States what are the project growth rates and total population within the United States?
+
+https://ifstudies.org/blog/baby-bust-fertility-is-declining-the-most-among-minority-women
+
+## Question three
+
+Are cancer rates increasing or are we just living longer?
+How do Cancer rates relate to life expectancy over time or by country?
+
+https://scienceblog.cancerresearchuk.org/2015/02/04/why-are-cancer-rates-increasing/
+
+https://www.livescience.com/51099-the-three-reasons-cancer-rates-are-rising.html
+
+## Question four
+
+Is there a statistic of an NCAA basketball team that can help me predict how well they will do in th March Madness tournament?
+
+https://www.dratings.com/predictor/bracketology/
+
+
